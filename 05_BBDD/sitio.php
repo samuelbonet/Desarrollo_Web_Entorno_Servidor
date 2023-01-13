@@ -23,6 +23,10 @@ switch ($opcion) {
         $db = new DB();
         $producto = $db->obtener_tabla("producto");
         break;
+    case "Cerrar sesión":
+        session_destroy();
+        header("Location:index.php");
+        exit();
 }
 
 
@@ -47,17 +51,18 @@ switch ($opcion) {
         <input type="submit" value="Ver familia" name="submit">
         <input type="submit" value="Ver tienda" name="submit">
         <input type="submit" value="Ver producto" name="submit">
+        <input type="submit" value="Cerrar sesión" name="submit">
     </form>
     <fieldset>
         <?php
         if (isset($familia)) {
-            echo interfaz::genera_tabla($familia, "Familia");
+            echo Utils::genera_tabla($familia, "Familia");
         }
         if (isset($tienda)) {
-            echo interfaz::genera_tabla($tienda, "Tienda");
+            echo Utils::genera_tabla($tienda, "Tienda");
         }
         if (isset($producto)) {
-            echo interfaz::genera_tabla($producto, "Producto");
+            echo Utils::genera_tabla($producto, "Producto");
         }
         ?>
     </fieldset>
