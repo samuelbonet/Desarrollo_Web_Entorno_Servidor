@@ -11,11 +11,13 @@ if (isset($_POST['usuario'])) {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
     if ($db->valida_usuario($usuario, $password)) {
-        session_start();
-        $_SESSION['usuario'] = $usuario;
+        
+        $_SESSION['usuario']=$usuario;
+        echo "AAAAAAAAAAAAAAAA";
         header("Location: ./sitio.php?usuario=$usuario");
         exit;
     } else {
+        echo "BBBBB";
         $msj = "Datos de conexión incorrectos";
     }
 }
@@ -35,7 +37,7 @@ if (isset($_POST['usuario'])) {
 <body>
     <h1>Formulario de Login</h1>
     <h2><?= $msj ?? '' ?></h2>
-    <form action="index.php" method="post">
+    <form action="sitio.php" method="post">
         <label for="usuario">Usuario</label>
         <input type="text" name="usuario" id="usuario">
         <label for="password">Contraseña</label>
