@@ -7,7 +7,6 @@ class DB
     {
         try {
             $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            echo "Conexión exitosa";
         } catch (Exception $e) {
             echo "Error en la conexión: " . $e->getMessage();
         }
@@ -24,16 +23,16 @@ class DB
             return false;
         }
     }
-    public function obtener_familias(): array
+    public function obtener_tabla(String $tabla): array
     {
-        $familias = [];
-        $consulta = "select * from familia";
+        $tablaData = [];
+        $consulta = "select * from $tabla";
         $resultado = $this->conn->query($consulta);
         $fila = $resultado->fetch_assoc();
         while ($fila) {
-            $familias[] = $fila;
+            $tablaData[] = $fila;
             $fila = $resultado->fetch_assoc();
         }
-        return $familias;
+        return $tablaData;
     }
 }

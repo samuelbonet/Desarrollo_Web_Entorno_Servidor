@@ -11,9 +11,17 @@ if (is_null($usuario)) {
 }
 $opcion = $_POST['submit'] ?? null;
 switch ($opcion) {
-    case "Ver familias":
+    case "Ver familia":
         $db = new DB();
-        $familias = $db->obtener_familias();
+        $familia = $db->obtener_tabla("familia");
+        break;
+    case "Ver tienda":
+        $db = new DB();
+        $tienda = $db->obtener_tabla("tienda");
+        break;
+    case "Ver producto":
+        $db = new DB();
+        $producto = $db->obtener_tabla("producto");
         break;
 }
 
@@ -36,10 +44,22 @@ switch ($opcion) {
 <body>
     Hola, bienvenido <?php echo $_GET['usuario'] ?>
     <form action="sitio.php" method="post">
-        <input type="submit" value="Ver familias" name="submit">
+        <input type="submit" value="Ver familia" name="submit">
+        <input type="submit" value="Ver tienda" name="submit">
+        <input type="submit" value="Ver producto" name="submit">
     </form>
     <fieldset>
-        <?= interfaz::genera_tabla($familias, "Familias") ?>
+        <?php
+        if (isset($familia)) {
+            echo interfaz::genera_tabla($familia, "Familia");
+        }
+        if (isset($tienda)) {
+            echo interfaz::genera_tabla($tienda, "Tienda");
+        }
+        if (isset($producto)) {
+            echo interfaz::genera_tabla($producto, "Producto");
+        }
+        ?>
     </fieldset>
 </body>
 
