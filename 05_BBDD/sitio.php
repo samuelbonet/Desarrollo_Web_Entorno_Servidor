@@ -80,7 +80,7 @@ switch ($opcion) {
             echo Utils::genera_tabla($producto, "producto");
         }
         if (isset($stock)) {
-            echo Utils::genera_tabla($producto, "stock");
+            echo Utils::genera_tabla($stock, "stock");
         }
         if (isset($tienda)) {
             echo Utils::genera_tabla($tienda, "tienda");
