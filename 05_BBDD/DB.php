@@ -24,7 +24,7 @@ class DB
     }
     public function valida_usuario(String $usuario, String $password)
     {
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'";
+        $sql = "SELECT * FROM usuarios WHERE nombre = '$usuario' AND password = '$password'";
         $result = $this
             ->conn
             ->query($sql);
