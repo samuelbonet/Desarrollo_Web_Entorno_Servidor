@@ -1,0 +1,7 @@
+docker run -ti --name NOMBRECONTENEDOR -p PUERTOLOCAL:PUERTODOCKER -v LOCAL:CONTENEDOR AUTOR/IMAGEN:VERSION
+docker run -ti --name php-web -p 22080:80 -v C:\Docker\PHP2023:/var/www/html manolo/web:v10
+
+
+phpmyadmin:
+manuel
+manuel12345

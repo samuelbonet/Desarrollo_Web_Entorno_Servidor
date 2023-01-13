@@ -1,0 +1,5 @@
+gdmgenerator/*
+.idea
+*/.idea/*
+inicio.php
+*/credenciales.php
