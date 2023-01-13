@@ -5,13 +5,11 @@ if (isset($_POST['usuario'])) {
     {
         require "$clase.php";
     }
-    var_dump($_POST);
     spl_autoload_register('carga');
     $db = new DB();
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
     if ($db->valida_usuario($usuario, $password)) {
-        var_dump($_POST);
 
         echo "Usuario correcto";
         session_start();
@@ -19,7 +17,6 @@ if (isset($_POST['usuario'])) {
         header("Location: ./sitio.php?usuario=$usuario");
         exit;
     } else {
-        var_dump($_POST);
         $msj = "Datos de conexión incorrectos";
     }
 }

@@ -19,7 +19,6 @@ class DB
             ->conn
             ->query($sql);
         if ($result->num_rows > 0) {
-            var_dump($result);
             return true;
         } else {
             return false;
@@ -30,13 +29,11 @@ class DB
         $familias = [];
         $consulta = "select * from familia";
         $resultado = $this->conn->query($consulta);
-        var_dump($resultado);
         $fila = $resultado->fetch_assoc();
         while ($fila) {
             $familias[] = $fila;
             $fila = $resultado->fetch_assoc();
         }
-        var_dump($familias);
         return $familias;
     }
 }

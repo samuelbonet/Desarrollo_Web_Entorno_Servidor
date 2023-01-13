@@ -37,6 +37,10 @@ switch ($opcion) {
     Hola, bienvenido <?php echo $_GET['usuario'] ?>
     <form action="sitio.php" method="post">
         <input type="submit" value="Ver familias" name="submit">
+    </form>
+    <fieldset>
+        <?= interfaz::genera_tabla($familias, "Familias") ?>
+    </fieldset>
 </body>
 
 </html>
