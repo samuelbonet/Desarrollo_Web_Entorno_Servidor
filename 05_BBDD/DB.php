@@ -24,5 +24,22 @@ class DB
         } else {
             return false;
         }
+        public function obtener_familias():array{
+            $familias=[];
+                $consulta="select * from familia";
+                $resultado=$this->conexion->query($consulta);
+            var_dump($resultado);
+            $fila=$resultado->fetch_assoc();
+            while ($fila){
+                $familias[]=$fila;
+                $fila=$resultado->fetch_assoc();
+            }
+            var_dump($familias);
+            return familias;
+
+
+        }
     }
 }
+
+?>
