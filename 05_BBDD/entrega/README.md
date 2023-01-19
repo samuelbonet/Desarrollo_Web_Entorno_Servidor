@@ -1,8 +1,11 @@
-# Proyecto CRUD, 2º Desarrollo de Aplicaciones Web Vespertino, modulo Desarrollo Entorno Servidor, 2022-2023
+# Proyecto CRUD
 
-Carlos Sesma Usarralde
+Autor:Carlos Sesma Usarralde
+Curso:2022-2023
+Curso:2º Desarrollo de Aplicaciones Web Vespertino
+Modulo: Desarrollo Entorno Servidor
 
-- [Proyecto CRUD, 2º Desarrollo de Aplicaciones Web Vespertino, modulo Desarrollo Entorno Servidor, 2022-2023](#proyecto-crud-2º-desarrollo-de-aplicaciones-web-vespertino-modulo-desarrollo-entorno-servidor-2022-2023)
+- [Proyecto CRUD](#proyecto-crud)
   - [Descripción](#descripción)
   - [Requisitos](#requisitos)
   - [Configuración](#configuración)
