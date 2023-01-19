@@ -2,10 +2,11 @@
 // Declaracion de variables
 $msj = null;
 $tabla = null;
+$tablaGenerada = null;
 // Creo la sesion
 session_start();
 // Cargo las clases
-require "init.php";
+require "helpers.php";
 // Si el usuario no esta logueado, lo redirijo a la pagina de login
 $usuario = $_SESSION['usuario'] ?? null;
 
@@ -29,12 +30,11 @@ switch ($opcion){
     case "Ver tienda":
         $tablaGenerada = Generar::tabla("tienda");
         break;
-    case "Log-out":
+        case "Log-out":
         session_destroy();
         header("Location:login.php");
         break;
     }
-
 // Le muestro las tablas que tiene la base de datos y que puede ver al usuario
 $db = new Database();
 $tablasRaw = $db->get_tablas();
@@ -51,6 +51,7 @@ foreach ($tablasRaw as $tabla) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
 <link rel="stylesheet" href="assets/.css">
+
 </head>
 <body>
     <form action="index.php" method="post">
