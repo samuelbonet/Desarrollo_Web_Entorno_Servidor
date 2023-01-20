@@ -10,9 +10,9 @@ class Database
             echo "Error en la conexión: " . $e->getMessage();
         }
     }
-    public function valida_usuario(String $usuario, String $password)
+    public function validate_user(String $usuario, String $password): bool
     {
-        $sql = "SELECT * FROM usuarios WHERE user = '$usuario' AND pass = '$password'";
+        $sql = "SELECT * FROM dwes.usuarios WHERE user = '$usuario' AND pass = '$password'";
         $result = $this
             ->conn
             ->query($sql);
@@ -22,7 +22,7 @@ class Database
             return false;
         }
     }
-    public function get_tablas(): array
+    public function get_tables(): array
     {
         $tablas = [];
         $consulta = "SHOW TABLES";
@@ -94,9 +94,59 @@ class Database
             return false;
         }
     }
+    public function get_entry(String $tabla, array $pk){
+        $sql = "SELECT * FROM $tabla WHERE ";
+        if (sizeof($pk) > 1) {
+            foreach ($pk as $dato => $value) {
+                $sql .= "$dato = '$value' AND ";
+            }
+            $sql = substr($sql, 0, -4);
+        }
+        if (sizeof($pk) == 1) {
+            foreach ($pk as $dato => $value) {
+                $sql .= "$dato = '$value'";
+            }
+        }
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_assoc();
+        while ($row) {
+            $data[] = $row;
+            $row = $result->fetch_assoc();
+        }
+        return $data;
+    }
+    public function update_entry(String $tabla, array $datos):bool
+    {
+        $pk = $this->get_primary_key($tabla);
+        $pk = explode(",", $pk);
+        /** @noinspection SqlWithoutWhere */
+        $sql = "UPDATE $tabla SET ";
+        if (sizeof($datos) > 1) {
+            foreach ($datos as $dato => $value) {
+                $sql .= "$dato = '$value', ";
+            }
+            $sql = substr($sql, 0, -2);
+        }
+        if (sizeof($datos) == 1) {
+            foreach ($datos as $dato => $value) {
+                $sql .= "$dato = '$value'";
+            }
+        }
+        $sql .= " WHERE ";
+        foreach ($pk as $key => $value) {
+            $sql .= "$value = '$datos[$value]' AND ";
+        }
+        $sql = substr($sql, 0, -4);
+        $result = $this->conn->query($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //FUNCTIONS FOR DEBUGGING
-    public function sql(String $sql): string
+    public function sql(String $sql)
     {
         $data = [];
         $result = $this->conn->query($sql);
@@ -106,6 +156,7 @@ class Database
             $row = $result->fetch_assoc();
         }
         var_dump($data);
+        return $data;
     }
 
     

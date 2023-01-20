@@ -12,7 +12,7 @@ if ($_SESSION['usuario'] != null) {
 //Si el usuario no esta logueado, compruebo si se ha enviado el formulario
 if (isset($_POST['usuario'])) {
     //Si se ha enviado el formulario, empiezo a validar datos
-    require "credenciales.php";
+    require "credentials.php";
 
     function carga($clase)
     {
@@ -25,7 +25,7 @@ if (isset($_POST['usuario'])) {
     $password = htmlspecialchars($_POST['password']);
 
     $db = new Database();
-     if ($db->valida_usuario($usuario, $password)) {
+     if ($db->validate_user($usuario, $password)) {
          echo "Usuario correcto";
          session_start();
          $_SESSION['usuario'] = $usuario;

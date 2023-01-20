@@ -25,6 +25,12 @@ Este proyecto consiste en la creación de un CRUD (Create, Read, Update, Delete)
 
 Para desplegar el proyecto se debe acceder a phpmyadmin con un usuario con permisos de gestion de usuarios("manuel" y "manuel12345" en este caso) y crear un nuevo usuario con permisos de SELECT, INSERT, UPDATE y  DELETE sobre las tablas de la base de datos "dwes".
 
+```mysql
+-- A este usuario le daremos permisos de CRUD para las tablas de dwes
+USE dwes;
+GRANT SELECT, INSERT, UPDATE, DELETE on dwes.* TO 'webuser';
+```
+
 Una vez creado debemos editar el archivo credenciales.php.example y cambiar los datos de usuario y contraseña por los del usuario creado anteriormente.
 
 Por último, debemos renombrar el archivo credenciales.php.example a credenciales.php.
@@ -35,5 +41,5 @@ Tambien se debe crear la tabla "usuarios" en la base de datos "dwes" con los sig
 - pass(varchar(200))
 
 ```sql
-CREATE TABLE `dwes`.`usuarios` ( `user` INT(50) NOT NULL , `pass` INT(200) NOT NULL ) ENGINE = InnoDB
+CREATE TABLE `dwes`.`usuarios` ( `user` varchar(50) NOT NULL , `pass` varchar(200) NOT NULL ) ENGINE = InnoDB
 ```

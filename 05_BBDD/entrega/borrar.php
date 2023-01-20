@@ -3,9 +3,9 @@
 require "helpers.php";
 
 $db = new Database();
-$tabla = $_GET['tabla'] ?? null;
+$tabla = $_GET['table'] ?? null;
 $datos = $_GET;
-unset($datos['tabla']);
+unset($datos['table']);
 if (is_null($tabla)) {
     header("Location: index.php");
     exit();
