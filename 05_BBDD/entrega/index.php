@@ -7,14 +7,7 @@ $tablaGenerada = null;
 session_start();
 // Cargo las clases
 require "helpers.php";
-// Si el usuario no esta logueado, lo redirijo a la pagina de login
-$usuario = $_SESSION['usuario'] ?? null;
 
-if (is_null($usuario)) {
-    header("Location:login.php");
-    exit();
-
-}
 // Si el usuario esta logueado, compruebo si se ha enviado el formulario
 $opcion = $_POST['submit'] ?? null;
 switch ($opcion){
@@ -50,7 +43,9 @@ foreach ($tablasRaw as $tabla) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
-<link rel="stylesheet" href="assets/.css">
+<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+<link rel="stylesheet" href="assets/style.css">
+
 
 </head>
 <body>
