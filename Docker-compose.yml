@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    apache_laravel:
+        container_name: laravel
+        ports:
+            - '80:80'
+        volumes:
+            - './app:/var/www/html'
+        image: samuelbonet/apache_laravel
+        command: |
+            /bin/bash -c "service apache2 start && tail -f /var/log/apache2/access.log"
